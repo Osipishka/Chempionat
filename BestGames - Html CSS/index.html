@@ -1,11 +1,259 @@
 <!DOCTYPE html>
-<html lang="ru"> <!-- style -->
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Games - Маркетплейс игр</title>
+    <title>BestGames - Маркетплейс игр</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-theme">
+    <!-- Хедер -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Логотип (векторный) -->
+                <a href="index.html" class="logo">
+                    <svg class="logo__svg" width="180" height="50" viewBox="0 0 180 50">
+                        <rect x="0" y="0" width="180" height="50" rx="10" fill="#1a1a1a"/>
+                        <text x="20" y="35" font-family="'Inter', sans-serif" font-size="28" font-weight="700" fill="#4A90E2">BEST</text>
+                        <text x="90" y="35" font-family="'Inter', sans-serif" font-size="28" font-weight="700" fill="#FF6B6B">GAMES</text>
+                        <circle cx="165" cy="25" r="8" fill="#50C878"/>
+                    </svg>
+                </a>
+
+                <!-- Десктопная навигация -->
+                <nav class="nav nav--desktop">
+                    <a href="#search" class="nav__link">Поиск</a>
+                    <a href="catalog.html" class="nav__link">Каталог игр</a>
+                    <a href="login.html" class="nav__link nav__link--login">Войти</a>
+                    <a href="profile.html" class="nav__link nav__link--profile">Личный кабинет</a>
+                </nav>
+
+                <!-- Бургер меню для мобильных -->
+                <button class="burger" id="burgerBtn" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Мобильное меню -->
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="nav nav--mobile">
+                <a href="#search" class="nav__link">Поиск</a>
+                <a href="catalog.html" class="nav__link">Каталог игр</a>
+                <a href="login.html" class="nav__link">Войти</a>
+                <a href="profile.html" class="nav__link">Личный кабинет</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Слайдер -->
+    <section class="slider-section">
+        <div class="container">
+            <h2 class="section-title">Новинки игр</h2>
+            <div class="slider">
+                <div class="slider__wrapper">
+                    <div class="slider__slide slider__slide--active">
+                        <div class="slider__image">
+                            <img src="https://avatars.mds.yandex.net/get-mpic/12520491/2a0000019441aabff646b6fbba91151eba44/orig" alt="Cyberpunk 2077">
+                        </div>
+                        <div class="slider__content">
+                            <h3 class="slider__title">Cyberpunk 2077</h3>
+                            <p class="slider__price">2 499 ₽</p>
+                            <a href="#" class="btn btn--primary">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                        <div class="slider__image">
+                            <img src="https://i.playground.ru/e/YWNn_VI3zGZvQP2YPAaCeQ.jpeg" alt="Elden Ring">
+                        </div>
+                        <div class="slider__content">
+                            <h3 class="slider__title">Elden Ring</h3>
+                            <p class="slider__price">3 999 ₽</p>
+                            <a href="#" class="btn btn--primary">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="slider__slide">
+                        <div class="slider__image">
+                            <img src="https://i.playground.ru/e/It2T5ImFmhbPlq2Wk06q4g.jpeg" alt="God of War">
+                        </div>
+                        <div class="slider__content">
+                            <h3 class="slider__title">God of War</h3>
+                            <p class="slider__price">3 499 ₽</p>
+                            <a href="#" class="btn btn--primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__indicators">
+                    <button class="slider__indicator slider__indicator--active" aria-label="Слайд 1"></button>
+                    <button class="slider__indicator" aria-label="Слайд 2"></button>
+                    <button class="slider__indicator" aria-label="Слайд 3"></button>
+                </div>
+                <button class="slider__btn slider__btn--prev" aria-label="Предыдущий слайд">‹</button>
+                <button class="slider__btn slider__btn--next" aria-label="Следующий слайд">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Быстрый поиск -->
+    <section class="search-section" id="search">
+        <div class="container">
+            <h2 class="section-title">Быстрый поиск по жанрам</h2>
+            <div class="search">
+                <input type="search" class="search__input" placeholder="Введите жанр игры..." list="genres">
+                <datalist id="genres">
+                    <option value="Экшен">
+                    <option value="Ролевая игра (RPG)">
+                    <option value="Стратегия">
+                    <option value="Симулятор">
+                    <option value="Приключение">
+                    <option value="Гонки">
+                    <option value="Спорт">
+                    <option value="Хоррор">
+                </datalist>
+                <button class="btn btn--search">Найти</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages-section">
+        <div class="container">
+            <h2 class="section-title">Наши преимущества</h2>
+            <div class="advantages">
+                <div class="advantage">
+                    <div class="advantage__icon">💰</div>
+                    <h3 class="advantage__title">Привлекательные цены</h3>
+                    <p class="advantage__text">Лучшие цены на рынке игр</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon">🎁</div>
+                    <h3 class="advantage__title">Ежемесячные акции</h3>
+                    <p class="advantage__text">Регулярные скидки и распродажи</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon">🕐</div>
+                    <h3 class="advantage__title">Круглосуточная поддержка</h3>
+                    <p class="advantage__text">Всегда готовы помочь 24/7</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon">⚡</div>
+                    <h3 class="advantage__title">Быстрая покупка</h3>
+                    <p class="advantage__text">Мгновенная доставка ключей</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярные игры -->
+    <section class="popular-section">
+        <div class="container">
+            <h2 class="section-title">Популярные игры</h2>
+            <div class="games">
+                <!-- Карточка 1 -->
+                <a href="catalog.html" class="game-card">
+                    <div class="game-card__image">
+                        <img src="https://images.gog-statics.com/6278561a6c70684ab3cd86065ba337c4ae9dd5e3f63b5bd9997d2eba602d17cd.jpg" alt="The Witcher 3">
+                    </div>
+                    <div class="game-card__content">
+                        <h3 class="game-card__title">The Witcher 3: Wild Hunt</h3>
+                        <p class="game-card__genre">RPG, Приключение</p>
+                        <p class="game-card__developer">CD Projekt Red</p>
+                        <div class="game-card__rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <p class="game-card__price">1 999 ₽</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка 2 -->
+                <a href="catalog.html" class="game-card">
+                    <div class="game-card__image">
+                        <img src="https://avatars.mds.yandex.net/get-mpic/4497593/img_id5889104019272411087.jpeg/orig" alt="Red Dead Redemption 2">
+                    </div>
+                    <div class="game-card__content">
+                        <h3 class="game-card__title">Red Dead Redemption 2</h3>
+                        <p class="game-card__genre">Экшен, Приключение</p>
+                        <p class="game-card__developer">Rockstar Games</p>
+                        <div class="game-card__rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">☆</span>
+                        </div>
+                        <p class="game-card__price">3 299 ₽</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка 3-5 аналогично -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Партнеры -->
+    <section class="partners-section">
+        <div class="container">
+            <h2 class="section-title">Наши партнеры</h2>
+            <div class="partners">
+                <div class="partner">
+                    <img src="https://avatars.mds.yandex.net/i?id=76a172e188bdffc1de7ef30bd954550d_l-5373299-images-thumbs&n=13" alt="NVIDIA">
+                </div>
+                <div class="partner">
+                    <img src="https://img.ixbt.site/live/topics/preview/00/09/11/30/959a34289b.jpg" alt="Steam">
+                </div>
+                <div class="partner">
+                    <img src="https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/3GuXXIwqLXe9SOVWAElIX1/3f6ef0ee0af05c4db2b96fe3f7e71892/2023_06_Multi-Brands.png" alt="Ubisoft">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__contacts">
+                    <h3 class="footer__title">Контакты</h3>
+                    <p class="footer__phone">📞 8-800-999-55-99</p>
+                    <p class="footer__email">✉️ best@games.ru</p>
+                </div>
+                
+                <div class="footer__links">
+                    <div class="footer__block">
+                        <h3 class="footer__title">Клиентам</h3>
+                        <a href="#" class="footer__link">Партнерам</a>
+                        <a href="#" class="footer__link">О нас</a>
+                        <a href="#" class="footer__link">Контакты</a>
+                    </div>
+                    
+                    <div class="footer__block">
+                        <h3 class="footer__title">Навигация</h3>
+                        <a href="index.html" class="footer__link">Главная</a>
+                        <a href="register.html" class="footer__link">Регистрация</a>
+                        <a href="login.html" class="footer__link">Авторизация</a>
+                        <a href="profile.html" class="footer__link">Личный кабинет</a>
+                        <a href="#search" class="footer__link">Поиск</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Переключатель темы -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+        <span class="theme-toggle__icon">🌙</span>
+    </button>
+
+    <script src="main.js"></script>
 </body>
 </html>
