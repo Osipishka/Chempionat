@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    background-color: #111;
+    border-bottom: 2px solid #333;
+    padding: 15px 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff3a3a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.login-btn {
+    background-color: #ff3a3a;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #e03232;
+}
+
+
+.footer {
+    width: 100%;
+    background-color: #111;
+    padding: 40px 0 20px 0;
+    border-top: 1px solid #333;
+}
+
+.footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.footer__top {
+    display: flex; /* Изменено с grid на flex */
+    justify-content: space-between; /* Распределение по ширине */
+    gap: 40px; /* Расстояние между блоками */
+    margin-bottom: 40px;
+    flex-wrap: wrap; /* Если не помещается - перенос на новую строку */
+}
+
+.footer__contacts,
+.footer__nav,
+.footer__info {
+    flex: 1; /* Все блоки занимают равную ширину */
+    min-width: 250px; /* Минимальная ширина для каждого блока */
+}
+
+.footer__section-title {
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #fff;
+    margin: 0 0 15px 0;
+    text-align: left;
+}
+
+.footer__contact-link {
+    display: block;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.footer__contact-link:hover {
+    color: #fff;
+}
+
+.footer__nav-list,
+.footer__info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer__nav-item,
+.footer__info-item {
+    margin-bottom: 10px;
+}
+
+.footer__nav-link,
+.footer__info-link {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer__nav-link:hover,
+.footer__info-link:hover {
+    color: #fff;
+}
+
+.footer__bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer__copyright {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.875rem;
+    color: #888;
+    margin: 0;
+}
