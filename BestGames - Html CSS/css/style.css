@@ -10,9 +10,10 @@ body {
     color: #fff;
 }
 
-ul{
+/* BODY HEADER */
+.nav_ul{
     list-style-type: none;
-        display: flex;
+    display: flex;
 }
 
 a{
@@ -32,7 +33,7 @@ a{
 
 .nav-link{
         font-size: 15pt;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-family: var(--font-primary), sans-serif;
 }
 
 .login-btn{
@@ -50,12 +51,6 @@ a{
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .logo {
     font-size: 45px;
      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -65,13 +60,21 @@ a{
     letter-spacing: 2px;
 }
 
+/* BODY MAIN  */
+
+/* BODY SLIDER */
+
+
+
+
+/* BODY FOOTER */
 footer{
     background-color: #1d1835;
     width: 100%;
     padding: 40px 0 20px 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: 1fr 1fr;
     gap: 30px;
 }
 
@@ -80,8 +83,11 @@ footer{
     grid-template-columns: repeat(3, 1fr);
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
     gap: 40px;
+}
+
+.footer_top_ul{
+    list-style-type: none;
 }
 
 .footer-bottom{
@@ -89,12 +95,4 @@ footer{
     margin-top: auto;
     text-align: center;
      grid-row: 2;
-}
-
-.footer_contacts,
-.footer_nav,
-.footer_info {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
 }
