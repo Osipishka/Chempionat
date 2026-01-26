@@ -115,7 +115,7 @@ footer{
     border-radius: var(--border-radius-md);
     display: flex;
     flex-direction: column;
-    grid-template-rows: repeat(3, 1fr);
+    align-items: center;  
 }
 
 .login_title{
@@ -124,12 +124,13 @@ footer{
 }
 
 .login_input-group{
-    display: grid;
-    width: 90%;
+    max-width: 400px;
+    margin-bottom: 20px;
 }
 
 .login_submit-btn{
     width: 50%;
+    min-width: 200px; 
     height: 50px;
     font-size: large;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -150,8 +151,243 @@ footer{
 .login_label{
     font-size: large;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
 }
 
 .login_input{
+    width: 300px;
     height: 30px;
+}
+
+/* PROFILE */
+
+.profile_container{
+    margin-left: 10%;
+}
+
+.profile_label_data{
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.profile_label{
+    color: gray;
+}
+
+/* PROFILE INFO */
+
+.user_group{
+   display: grid;
+       grid-template-columns: max-content 1fr;
+    gap: 10px;
+}
+
+.user_info{
+    align-items: center;
+    width: 100%;
+}
+
+.user_field{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+/* PROFILE SETTINGS */
+
+.profile_container{
+   margin-top: 30px;
+}
+
+.change_password_btn{
+    background-color: #ff3a3a;
+    color: white;
+    border-radius: 10%;
+    padding: 12px;
+    font-size: 14pt;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.user_settings {
+    margin-top: 30px;
+}
+
+/* Заголовок "Настройки профиля" */
+.settings_container h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.setting_group {
+    padding-bottom: 20px;
+}
+
+.setting_title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+/* КОНТЕЙНЕР ДЛЯ РАДИО-КНОПОК */
+.radio_group {
+    display: flex;
+    gap: 25px;
+}
+
+/* КОНТЕЙНЕР ОДНОЙ РАДИО-КНОПКИ */
+.radio_option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.radio_option:hover {
+    background-color: rgba(74, 118, 168, 0.1); /* Светло-синий фон */
+}
+
+/* САМА РАДИО-КНОПКА (скрытый input) */
+.radio_option input[type="radio"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #ff3a3a;
+}
+
+/* КАСТОМНЫЙ ДИЗАЙН РАДИО-КНОПКИ (альтернатива) */
+.radio_option input[type="radio"] {
+    /* Скрываем стандартный кружок */
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc; /* Серый ободок */
+    border-radius: 50%; /* Круглая форма */
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+/* Когда радио-кнопка выбрана */
+.radio_option input[type="radio"]:checked {
+    border-color: #ff3a3a;
+}
+
+/* Внутренний кружок при выборе */
+.radio_option input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #ff3a3a;
+    border-radius: 50%;
+}
+
+/* ТЕКСТ РЯДОМ С РАДИО-КНОПКОЙ */
+.radio_label {
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 400;
+}
+
+.change_password_btn {
+    background-color: #ff3a3a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.language_select_container {
+    width: 200px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.language_select {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    color: #333;
+}
+
+.language_select:focus {
+    outline: none;
+    border-color: #4a76a8;
+    box-shadow: 0 0 0 2px rgba(74, 118, 168, 0.2);
+}
+
+.select_arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
+    font-size: 12px;
+}
+
+.language_select option {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.game{
+    border-radius: 5px;
+    background-color: #27233b;
+    width: 85%;
+    padding: 20px;
+    margin: 25px 0px;
+    display: flex; /* Добавляем flex-контейнер */
+    justify-content: space-between; /* Равномерное распределение */
+    align-items: center; 
+}
+
+.date{
+     color: gray;
+    font-size: 18px;
+    min-width: 120px;
+}
+
+.name{
+    font-size: 18px;
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.cost{
+     font-size: 18px;
+    min-width: 80px;
+    text-align: right;
 }
