@@ -10,6 +10,29 @@ body {
     color: #fff;
 }
 
+.light_theme_body{
+     background-color: #ffffff;
+    color: #000000;
+}
+
+.light_theme_header{
+    background-color: #454157;
+    width: 100%;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.light_theme_footer{
+    background-color: #454157;
+    width: 100%;
+    padding: 40px 0 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    color: white;
+}
+
 /* BODY HEADER */
 .nav_ul{
     list-style-type: none;
