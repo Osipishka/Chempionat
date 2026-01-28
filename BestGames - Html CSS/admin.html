@@ -1,15 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-    <h1>
-        "Главная страница"
-    </h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestGames - Маркетплейс игр</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <button>
-        "Вход"
-    </button>
+  <header class="header">
+    <div class="container">
+        <div class="logo">BG</div>
+        <nav class="navbar">
+            <ul class="nav_ul">
+                <li>
+                     <a href="#" class="nav-link">Поиск</a>
+                </li>   
+                <li>
+                     <a href="profile.html" class="nav-link">Личный кабинет</a>
+                </li>  
+                <li>
+                     <a href="Catalog.html" class="nav-link">Каталог игр</a>
+                </li>         
+            </ul>
+        </nav>
+        <div class="header_auth_button">
+            <a href="login.html" class="login-btn">Войти</a>
+        </div>
+    </div>
+    </header>
 
-    <button>
-        "Регистрация"
-    </button>
+    <main class="main">
+        <section class="admin">
+            <div class="admin_container">
+                <h3 class="admin_group_title">Добавить новую игру</h3>
+                <div class="add_game">
+                    <div class="field_container">
+                        <label class="field_label" >Название игры</label>
+                        <label class="field_label" >Жанр</label>
+                        <label class="field_label" >Компания-разработчик</label>
+                        <label class="field_label" >Описание</label>
+                        <label class="field_label" >Стоимость(₽)</label>
+                       
+                    </div>
+                    <div class="field_container">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                    </div>
+                    <button class="add_btn">Добавить</button>
+                </div>
+                    
+                   
+                <h3 class="admin_group_title">Редактировать игру</h3>
+                     <div class="edit_game">
+                    <div class="field_container">
+                        <label class="field_label" >Название игры</label>
+                        <label class="field_label" >Жанр</label>
+                        <label class="field_label" >Компания-разработчик</label>
+                        <label class="field_label" >Описание</label>
+                        <label class="field_label" >Стоимость(₽)</label>
+                       
+                    </div>
+                    <div class="field_container">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                    </div>
+                    <button class="edit_btn">Сохранить</button>
+                </div>
+        
+                <h3 class="admin_group_title">Удалить игру</h3>
+                     <div class="del_game">
+                    <div class="field_container">
+                        <label class="field_label" >ID</label>
+                        <label class="field_label" >Название игры</label>
+                        <label class="field_label" >Жанр</label>
+                        <label class="field_label" >Компания-разработчик</label>
+                        <label class="field_label" >Описание</label>
+                        <label class="field_label" >Стоимость(₽)</label>
+                       
+                    </div>
+                    <div class="field_container">
+                        <input class="field_label_del field_label focus-outline">
+                        <label class="field_label_del field_label focus-outline">Название игры</label>
+                        <label class="field_label_del field_label focus-outline">Жанр</label>
+                        <label class="field_label_del field_label focus-outline">Компания-разработчик</label>
+                        <label class="field_label_del field_label focus-outline">Описание</label>
+                        <label class="field_label_del field_label focus-outline">Стоимость(₽)</label>
+                    </div>
+                    <button class="del_btn">Удалить</button>
+                </div>
+        
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="footer-top">
+            <div>
+                <h3>Контакты</h3>
+                <ul class="footer_top_ul">
+                    <li><a href="#" class="footer-link">8-800-999-55-99</a></li>
+                    <li> <a href="#" class="footer-link">best@games.ru</a>  </li>
+                </ul>    
+            </div>
+            <div class="footer_nav">
+                <ul class="footer_top_ul">
+                    <li><h3>Навигация</h3></li>                    
+                    <li><a href="index.html" class="footer__nav-link focus-outline">Главная</a>
+                    </li>
+                    <li><a href="register.html" class="footer__nav-link focus-outline">Регистрация</a>
+                    </li>
+                    <li><a href="login.html" class="footer__nav-link focus-outline">Авторизация</a></li>
+                    <li><a href="profile.html" class="footer__nav-link focus-outline">Личный кабинет</a></li>
+                    <li><a href="#search" class="footer__nav-link focus-outline">Поиск</a></li>
+                </ul>
+            </div>
+            <div class="footer_info">
+            <ul class="footer_top_ul">
+                <li> <h3>Информация</h3></li>                    
+                <li><a href="index.html" class="footer__nav-link focus-outline">Клиент</a>
+                </li>
+                <li><a href="register.html" class="footer__nav-link focus-outline">Партнер</a>
+                </li>
+                <li><a href="login.html" class="footer__nav-link focus-outline">О нас</a></li>
+                <li><a href="#search" class="footer__nav-link focus-outline">Контакты</a></li>
+            </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer__copyright">© 2025 BestGames. Все права защищены.</p>
+        </div>
+    </footer>
 </body>
+</html>
