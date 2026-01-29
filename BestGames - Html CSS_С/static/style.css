@@ -419,47 +419,100 @@ footer{
 /* Admin */
 
 .admin{
-     margin-left: 10%;
-
+    margin-left: 10%;
+    margin-bottom: 10%;
 }
 
 .add_game{
-    display: flex;
+   display: flex;
 }
 
 .field_container{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+   flex: 1;
+   display: flex;
+   flex-direction: column;
 }
 
 .field_input{
+    background-color: white;
+    border-radius: 10px;
     width: 50%;
+    padding-left: 5px;
 }
 
 .add_btn{
-    flex: 1;
-    margin-right: 150px;
-    background-color: #5bff3a;
-    border-radius: 30%;
-    height: 50px;
-    max-width: 70px;
+   flex: 1;
+   background-color: #5bff3a;
+   border-radius: 30%;
+   height: 50px;
+   max-width: 70px;
 }
 
 .edit_btn{
-    flex: 1;
-    margin-right: 150px;
-    background-color: #3a89ff;
-    border-radius: 30%;
-    height: 50px;
-    max-width: 70px;
+   flex: 1;
+   background-color: #3a89ff;
+   border-radius: 30%;
+   height: 50px;
+   max-width: 70px;
 }
 
 .del_btn{
-    flex: 1;
-    margin-right: 150px;
-    background-color: #ff3a3a;
-    border-radius: 30%;
-    height: 50px;
-    max-width: 70px;
+   flex: 1;
+   background-color: #ff3a3a;
+   border-radius: 30%;
+   height: 50px;
+   max-width: 70px;
+   
+}
+
+.field_label{
+    margin: 10px 10px 10px 0px;
+}
+
+.field_label_del{
+    background-color: white;
+    border-radius: 10px;
+    width: 50%;
+    color: #000000;
+    padding-left: 5px;
+}
+
+.admin_group_title{
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.add_game{
+    background-color: #a7d69e;
+    width: 75%;
+    border-radius: 10px;
+    padding: 1%;
+    color: #000000;
+    font-size: medium;
+}
+
+.edit_game{
+    display: flex;
+    background-color: #9ea8d6;
+    width: 75%;
+    border-radius: 10px;
+    padding: 1%;
+    color: #000000;
+    font-size: medium;
+}
+
+.del_game{
+    display: flex;
+    background-color: #d69e9e;
+    width: 75%;
+    border-radius: 10px;
+    padding: 1%;
+    color: #000000;
+    font-size: medium;
+}
+
+.find_btn{
+    border-radius: 5px;
+    padding: 3px;
+    background-color: white;
 }

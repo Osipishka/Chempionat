@@ -29,10 +29,10 @@
     </div>
     </header>
 
-    <main class="main">
+     <main class="main">
         <section class="admin">
             <div class="admin_container">
-                <h3>Добавить новую игру</h3>
+                <h3 class="admin_group_title">Добавить новую игру</h3>
                 <div class="add_game">
                     <div class="field_container">
                         <label class="field_label" >Название игры</label>
@@ -43,19 +43,20 @@
                        
                     </div>
                     <div class="field_container">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
                     </div>
                     <button class="add_btn">Добавить</button>
                 </div>
                     
                    
-                <h3>Редактировать игру</h3>
-                     <div class="add_game">
+                <h3 class="admin_group_title">Редактировать игру</h3>
+                     <div class="edit_game">
                     <div class="field_container">
+                        <label class="field_label" >ID</label>
                         <label class="field_label" >Название игры</label>
                         <label class="field_label" >Жанр</label>
                         <label class="field_label" >Компания-разработчик</label>
@@ -64,18 +65,20 @@
                        
                     </div>
                     <div class="field_container">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
+                        <input class="field_input field_label focus-outline">
                     </div>
                     <button class="edit_btn">Сохранить</button>
                 </div>
-
-                <h3>Удалить игру</h3>
-                     <div class="add_game">
+        
+                <h3 class="admin_group_title">Удалить игру</h3>
+                     <div class="del_game">
                     <div class="field_container">
+                        <label class="field_label" >ID</label>
                         <label class="field_label" >Название игры</label>
                         <label class="field_label" >Жанр</label>
                         <label class="field_label" >Компания-разработчик</label>
@@ -84,15 +87,18 @@
                        
                     </div>
                     <div class="field_container">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
-                        <input class="field_input focus-outline">
+                        <div class="find_game_group">
+                            <input class="field_label_del field_label focus-outline">
+                            <button class="find_btn">Найти</button>
+                        </div>
+                        <label class="field_label_del field_label focus-outline">Название игры</label>
+                        <label class="field_label_del field_label focus-outline">Жанр</label>
+                        <label class="field_label_del field_label focus-outline">Компания-разработчик</label>
+                        <label class="field_label_del field_label focus-outline">Описание</label>
+                        <label class="field_label_del field_label focus-outline">Стоимость(₽)</label>
                     </div>
                     <button class="del_btn">Удалить</button>
                 </div>
-
             </div>
         </section>
     </main>

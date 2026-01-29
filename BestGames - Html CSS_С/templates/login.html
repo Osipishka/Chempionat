@@ -24,7 +24,7 @@
             </ul>
         </nav>
         <div class="header_auth_button">
-            <a href="login.html" class="login-btn">Войти</a>
+            <a href="/login" class="login-btn">Войти</a>
         </div>
     </div>
     </header>
@@ -33,15 +33,14 @@
          <section class="login">
         <div class="login_container">
             <h1 class="login_title">Вход в аккаунт</h1>
-            <form class="login_form" action="#" method="post">
+            <form class="login_form" action="/login" method="POST">
                 <div class="login_input-group">
                     <label class="login_label" for="login-email">E-mail</label>
-                    <input class="login_input focus-outline" id="login-email" type="email" name="email" required>
+                    <input class="login_input focus-outline" id="login-email" type="email" name="login" required>
                 </div>
                 <div class="login_input-group">
                     <label class="login_label" for="login-password">Пароль</label>
-                    <input class="login_input focus-outline" id="login-password" type="password" name="password"
-                           required>
+                    <input class="login_input focus-outline" id="login-password" type="password" name="pass" required>
                 </div>
                 <button class="login_submit-btn focus-outline" type="submit">Войти</button>
             </form>
