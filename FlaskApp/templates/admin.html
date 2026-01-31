@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ панель</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="Title">
+            <h3>Админ панель платформы онлайн обучения</h3>
+        </div>
+        <div class="nav_button_group">
+            <button class="nav_button" data-target="students-panel">Студенты</button>
+            <button class="nav_button" data-target="courses-panel">Курсы</button>
+            <button class="nav_button" data-target="lessons-panel">Уроки</button>
+        </div>
+    </header>
+    
+    <main>
+        <form >
+        <section class="panel" id="students-panel">
+            <h2>Управление студентами</h2>
+            <div class="panel-content">
+                <button onclick="addStudent()">Добавить студента</button>
+                <button onclick="showAllStudents()">Показать всех</button>
+                <input type="text" placeholder="Поиск по имени...">
+                <div id="students-list">
+                </div>
+            </div>
+        </section>
+        
+        <section class="panel" id="courses-panel">
+            <h2>Управление курсами</h2>
+            <div class="panel-content">
+                <button onclick="addCourse()">Добавить курс</button>
+                <button onclick="editCourse()">Редактировать</button>
+                <button onclick="deleteCourse()">Удалить</button>
+                <div id="courses-list">
+                </div>
+            </div>
+        </section>
+        <section class="panel" id="lessons-panel">
+            <h2>Управление уроками</h2>
+            <div class="panel-content">
+                <button onclick="addLesson()">Добавить урок</button>
+                <select>
+                    <option>Выберите курс</option>
+                </select>
+                <div id="lessons-list">
+                </div>
+            </div>
+        </section>     
+        </form>
+    </main>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+    
+    <script>
+    function addStudent() {
+        alert('Форма добавления студента');
+    }
+    
+    function addCourse() {
+        alert('Форма добавления курса');
+    }
+    
+    function addLesson() {
+        alert('Форма добавления урока');
+    }
+    
+    function showAllStudents() {
+        alert('Загрузка списка студентов из базы');
+    }
+    </script>
+</body>
+</html>

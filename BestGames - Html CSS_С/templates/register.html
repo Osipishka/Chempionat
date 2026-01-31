@@ -33,30 +33,30 @@
          <section class="login">
         <div class="login_container">
             <h1 class="login_title">Регистрация</h1>
-            <form class="login_form" action="#" method="post">
+            <form class="login_form" action="/register" method="POST">
                 <div class="login_input-group">
                     <label class="login_label" for="login-email">E-mail</label>
-                    <input class="login_input focus-outline" id="login-email" type="email" name="email" required>
+                    <input class="login_input focus-outline" id="login-email" type="email" name="login" required>
                 </div>
                  <div class="login_input-group">
                     <label class="login_label">Фамилия</label>
-                    <input class="login_input">
+                    <input class="login_input" name="fullName">
                 </div>
                 <div class="login_input-group">
                     <label class="login_label">Имя</label>
-                    <input class="login_input">
+                    <input class="login_input" name="name">
                 </div>
                 <div class="login_input-group">
                     <label class="login_label">Телефон</label>
-                    <input class="login_input">
+                    <input class="login_input" phone="phone">
                 </div>
                  <div class="login_input-group">
-                    <label class="login_label" type="date">Дата рождения</label>
+                    <label class="login_label" type="date" name="birthday">Дата рождения</label>
                     <input class="login_input">
                 </div>
                 <div class="login_input-group">
                     <label class="login_label">Пароль</label>
-                    <input class="login_input">
+                    <input class="login_input" name="pass">
                 </div>
                 <div class="login_input-group">
                     <label class="login_label">Повторите пароль</label>
