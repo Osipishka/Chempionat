@@ -20,16 +20,74 @@
     
     <main>
         <form >
-        <section class="panel" id="students-panel">
-            <h2>Управление студентами</h2>
-            <div class="panel-content">
-                <button onclick="addStudent()">Добавить студента</button>
-                <button onclick="showAllStudents()">Показать всех</button>
-                <input type="text" placeholder="Поиск по имени...">
-                <div id="students-list">
+            <section class="panel" id="students-panel">
+                <h2>Управление студентами</h2>
+                <div class="panel-content">
+                    <div class="students_nav_panel">
+                        <form action="/addStudent">
+                            <button type="button" onclick="addStudent()">Добавить студента</button>
+                        </form>
+                        <form action="/showAllStudents">
+                            <button type="button" onclick="showAllStudents()">Показать студентов</button>
+                        </form>
+                        <form action="/search_students">
+                            <input type="text" placeholder="Поиск по имени..." id="search-name">
+                            <button type="button" onclick="searchByName()">Найти</button>
+                        </form>
+                    </div>
+            
+                    <!-- Вот сюда будут подставляться карточки из базы -->
+                    <div class="students-grid" id="students-grid">
+                        <!-- Здесь ничего не пиши вручную — будет заменяться через JS -->
+                        <p>Загрузка студентов...</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+                <div id="add-student-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeAddStudentModal()">&times;</span>
+                        <h2>Добавить студента</h2>
+                        
+                        <form id="add-student-form" onsubmit="addStudentSubmit(event)">
+                            <div class="form-group">
+                                <label for="full_name">Фамилия и имя</label>
+                                <input type="text" id="full_name" name="full_name" placeholder="Иванов Иван" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="course">Курс</label>
+                                <select id="course" name="course" required>
+                                    <option value="">Выберите курс</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date">Дата записи</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="status">Статус оплаты</label>
+                                <select id="status" name="status" required>
+                                    <option value="Ожидает оплаты">Ожидает оплаты</option>
+                                    <option value="Оплачено">Оплачено</option>
+                                    <option value="Ошибка оплаты">Ошибка оплаты</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">Сохранить студента</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Тёмный фон для модалки -->
+                <div id="modal-overlay" class="modal-overlay" onclick="closeAddStudentModal()" style="display:none;"></div>
+
+            </section>
         
         <section class="panel" id="courses-panel">
             <h2>Управление курсами</h2>
@@ -57,21 +115,183 @@
     <script src="{{ url_for('static', filename='admin.js') }}"></script>
     
     <script>
-    function addStudent() {
-        alert('Форма добавления студента');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStudents();  // сразу загружаем
+        });
+        // Открытие модального окна
+        function addStudent() {
+    // Подгружаем курсы (как было раньше)
+    fetch('/get_courses_for_select')
+        .then(response => response.json())
+        .then(data => {
+            const select = document.getElementById('course');
+            select.innerHTML = '<option value="">Выберите курс</option>';
+            data.forEach(course => {
+                const opt = document.createElement('option');
+                opt.value = course.Name;          // или course.ID, если переделаешь
+                opt.textContent = course.Name;
+                select.appendChild(opt);
+            });
+        })
+        .catch(err => console.error('Ошибка курсов:', err));
+
+    const modal = document.getElementById('add-student-modal');
+    modal.classList.add('active');
+}
+
+function closeAddStudentModal() {
+    const modal = document.getElementById('add-student-modal');
+    modal.classList.remove('active');
+    document.getElementById('add-student-form').reset();
+}
+
+// Чтобы закрывать по клику вне модалки
+document.getElementById('add-student-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeAddStudentModal();
     }
+});
+
+function closeAddStudentModal() {
+    document.getElementById('add-student-modal').style.display = 'none';
+    document.getElementById('modal-overlay').style.display = 'none';
+    document.getElementById('add-student-form').reset();
+}
+
+// Отправка формы
+function addStudentSubmit(event) {
+    event.preventDefault();
     
-    function addCourse() {
-        alert('Форма добавления курса');
-    }
+    const formData = new FormData(event.target);
     
-    function addLesson() {
-        alert('Форма добавления урока');
-    }
+    fetch('/add_student', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Студент успешно добавлен!');
+            closeAddStudentModal();
+            loadStudents();  // обновляем список
+        } else {
+            alert('Ошибка: ' + (data.error || 'Неизвестная ошибка'));
+        }
+    })
+    .catch(err => {
+        console.error('Ошибка:', err);
+        alert('Произошла ошибка при сохранении');
+    });
+}
+        function loadStudents() {
+            fetch('/get_first_five_students')
+                .then(response => {
+                    if (!response.ok) throw new Error('Ошибка сервера');
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById('students-grid').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    document.getElementById('students-grid').innerHTML = 
+                        '<p style="color: red;">Не удалось загрузить студентов</p>';
+                });
+        }
+        
+        function showAllStudents() {
+            
+        }
+        
+        function searchByName() {
+    const name = document.getElementById('search-name').value.trim();
     
-    function showAllStudents() {
-        alert('Загрузка списка студентов из базы');
+    if (!name) {
+        alert('Введите имя для поиска');
+        return;
     }
-    </script>
+
+    // Отправляем запрос на сервер
+    fetch('/search_students', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            'name': name
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Ошибка сервера');
+        }
+        return response.json();
+    })
+    .then(students => {
+        // Очищаем текущий список
+        const grid = document.getElementById('students-grid');
+        grid.innerHTML = '';
+
+        if (students.length === 0) {
+            grid.innerHTML = '<p style="text-align:center; color:#777; padding:20px;">Студенты не найдены</p>';
+            return;
+        }
+
+        // Генерируем карточки из полученных данных (аналогично тому, как сервер делает в /get_first_five_students)
+        let html = '';
+        students.forEach(student => {
+            let status_text = student.status || 'Ожидает оплаты';
+            let status_lower = status_text.toLowerCase();
+            let status_class = 'paid';
+
+            if (status_lower.includes('ожидает')) {
+                status_class = 'pending';
+            } else if (status_lower.includes('ошибк') || status_lower.includes('ошибка')) {
+                status_class = 'error';
+            }
+
+            html += `
+            <div class="student-card">
+                <div class="student-info">
+                    <h3 class="student-name">${student.name || '—'}</h3>
+                    <p class="student-email">${student.email || '—'}</p>
+                </div>
+                <div class="student-course">
+                    <span class="course-label">Курс:</span>
+                    <span class="course-name">${student.course || '—'}</span>
+                </div>
+                <div class="student-meta">
+                    <div class="meta-item">
+                        <span class="label">Дата записи:</span>
+                        <span class="value">${student.date || '—'}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">Статус:</span>
+                        <span class="status ${status_class}">${status_text}</span>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+
+        // Добавляем пагинацию-заглушку (можно потом убрать или сделать настоящую)
+        html += `
+        <div class="pagination">
+            <button class="page-btn prev" disabled>← Назад</button>
+            <span class="page-info">Результаты поиска</span>
+            <button class="page-btn next" disabled>Вперёд →</button>
+        </div>
+        `;
+
+        grid.innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Ошибка поиска:', error);
+        document.getElementById('students-grid').innerHTML = 
+            '<p style="color: red; text-align:center; padding:20px;">Ошибка при поиске</p>';
+    });
+}
+        </script>
 </body>
 </html>
