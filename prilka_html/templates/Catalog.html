@@ -4,23 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalog</title>
-    <link rel="stylesheet" href="/css/style.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
         <div class="header_nav">
-            <img src="/img/logo.svg" alt="logo">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
             <div class="navigation_buttons_group">
-                <a href="#" class ="navigation_button">Поиск</a>
-                <a href="#" class ="navigation_button">Личный кабинет</a>
-                <a href="#" class ="navigation_button">Каталог</a>
+                 <a href="/" class ="navigation_button">Поиск</a>
+                <a href="/profile" class ="navigation_button">Личный кабинет</a>
+                <a href="/Catalog" class ="navigation_button">Каталог</a>
             </div>
-            <button class="login__nav_button">Войти</button>
+            <button class="login__nav_button"> 
+              <a href="/login">Войти</a>
+            </button>
         </div>  
     </header>
 
     <main>
-        
+        <section class="catalog">
+            <div class="catalog_navigation">
+                <label>Фильтры</label>
+                <div class="navigation_items">
+                    <div class="nav_item">
+                        <label>Жанры</label>
+                       <ul>
+                            <li>
+                                <input type="checkbox" id="shooter">
+                                <label for="shooter">Шутер от первого лица</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="rpg">
+                                <label for="rpg">Классическая RPG</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="sandbox">
+                                <label for="sandbox">Песочница</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="survival">
+                                <label for="survival">Выживание</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="metroidvania">
+                                <label for="metroidvania">Метроидвания</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav_item">
+                        <label>Цена(₽)</label>
+                        <div>
+                            <input class="cost_input" placeholder="От">
+                            <label>—</label>
+                            <input class="cost_input" placeholder="До">
+                        </div>
+                    </div>
+                    <div class="nav_item">
+                        <label>Разработчик</label>
+                         <div class="dropdown">
+                            <button class="dropdown-button">Все разработчики ▼</button>
+                            <div class="dropdown-content">
+                                <a href="#" onclick="return false">Bethesda</a>
+                                <a href="#" onclick="return false">Larian Studio</a>
+                                <a href="#" onclick="return false">Mojang</a>
+                                <a href="#" onclick="return false">Re-Logic</a>
+                                <a href="#" onclick="return false">Team Cherry</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav_item">
+                        <label>Рейтинг</label>
+                       <ul>
+                            <li>
+                                <input type="radio" id="rating5" name="game_rating">
+                                <label for="rating5">★★★★★ 5</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="rating4" name="game_rating">
+                                <label for="rating4">★★★★✰ 4+</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="rating3" name="game_rating">
+                                <label for="rating3">★★★✰✰ 3+</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+           <div class="catalog_items">
+                <!-- <div class="game">
+                    <img src="/img/doom-square.webp" alt="Doom 2016">
+                    <label class="genre">Шутер от первого лица</label>
+                    <label>Bethesda</label>
+                    <label class="rating">★★★★★</label>
+                    <label class="cost">999₽</label>
+                    <button class="by_button">Купить</button>
+                </div>
+                 <div class="game">
+                    <img src="/img/doom-square.webp" alt="Doom 2016">
+                    <label class="title">Шутер от первого лица</label>
+                    <label>Bethesda</label>
+                    <label class="rating">★★★★★</label>
+                    <label class="cost">999₽</label>
+                    <button class="by_button">Купить</button>
+                </div>
+                <div class="game">
+                    <img src="/img/doom-square.webp" alt="Doom 2016">
+                    <label class="title">Шутер от первого лица</label>
+                    <label>Bethesda</label>
+                    <label class="rating">★★★★★</label>
+                    <label class="cost">999₽</label>
+                    <button class="by_button">Купить</button>
+                </div>
+                <div class="game">
+                    <img src="/img/doom-square.webp" alt="Doom 2016">
+                    <label class="title">Шутер от первого лица</label>
+                    <label>Bethesda</label>
+                    <label class="rating">★★★★★</label>
+                    <label class="cost">999₽</label>
+                    <button class="by_button">Купить</button>
+                </div>
+                <div class="game">
+                    <img src="/img/doom-square.webp" alt="Doom 2016">
+                    <label class="title">Шутер от первого лица</label>
+                    <label>Bethesda</label>
+                    <label class="rating">★★★★★</label>
+                    <label class="cost">999₽</label>
+                    <button class="by_button">Купить</button>
+                </div>
+                <div class="game">
+                    <img src="/img/doom-square.webp" alt="Doom 2016">
+                    <label class="title">Шутер от первого лица</label>
+                    <label>Bethesda</label>
+                    <label class="rating">★★★★★</label>
+                    <label class="cost">999₽</label>
+                    <button class="by_button">Купить</button>
+                </div>
+                <div class="game">
+                    <img src="/img/doom-square.webp" alt="Doom 2016">
+                    <label class="title">Шутер от первого лица</label>
+                    <label>Bethesda</label>
+                    <label class="rating">★★★★★</label>
+                    <label class="cost">999₽</label>
+                    <button class="by_button">Купить</button>
+                </div> -->
+            </div>
+        </section>
+       
     </main>
 
  <footer>
@@ -30,13 +160,13 @@
             <label>best@games.ru</label>
         </div>
 
-        <div class="footer_groups">
+      <div class="footer_groups">
             <h3>Навигация</h3>
-            <a href="index.html">Главная</a>
-            <a href="register.html">Регистрация</a>
-            <a href="login.html">Авторизация</a>
-            <a href="profile.html">Личный кабинет</a>
-            <a href="Catalog.html">Поиск</a>
+            <a href="/">Главная</a>
+            <a href="/register">Регистрация</a>
+            <a href="/login">Авторизация</a>
+            <a href="/profile">Личный кабинет</a>
+            <a href="/Catalog">Поиск</a>
         </div>
     </footer>
 </body>

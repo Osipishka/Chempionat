@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
         <div class="header_nav">
-            <img src="/img/logo.svg" alt="logo">
+           <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
             <div class="navigation_buttons_group">
-                <a href="#" class ="navigation_button">Поиск</a>
-                <a href="#" class ="navigation_button">Личный кабинет</a>
-                <a href="#" class ="navigation_button">Каталог</a>
+                 <a href="/" class ="navigation_button">Поиск</a>
+                <a href="/profile" class ="navigation_button">Личный кабинет</a>
+                <a href="/Catalog" class ="navigation_button">Каталог</a>
             </div>
-            <button class="login__nav_button">Войти</button>
+            
+            <button class="login__nav_button"> 
+              <a href="/login">Войти</a>
+            </button>
         </div>  
     </header>
 
@@ -29,27 +32,27 @@
       
           <div class="slides">
             <div class="slide">
-              <img src="/img/bg3.webp" alt="Slide 1">
+              <img src="{{ url_for('static', filename='images/bg3.webp') }}" alt="Slide 1">
               <div class="slide-info">
                 <h3>Baldur's Gate 3</h3>
                 <p class="price">1499₽</p>
-                <p> <button>Подробнее</button></p>
+                <p><button>Подробнее</button></p>
               </div>
             </div>
             <div class="slide">
-              <img src="/img/doom.webp" alt="Slide 2">
+              <img src="{{ url_for('static', filename='images/doom.webp') }}" alt="Slide 2">
               <div class="slide-info">
                 <h3>Doom 2016</h3>
                 <p class="price">990₽</p>
-                <p> <button>Подробнее</button></p>
+                <p><button>Подробнее</button></p>
               </div>
             </div>
             <div class="slide">
-              <img src="/img/minecraft.webp" alt="Slide 3">
+              <img src="{{ url_for('static', filename='images/minecraft.webp') }}" alt="Slide 3">
               <div class="slide-info">
                 <h3>Minecraft</h3>
                 <p class="price">759₽</p>
-                <p> <button>Подробнее</button></p>
+                <p><button>Подробнее</button></p>
               </div>
             </div>
           </div>
@@ -59,7 +62,6 @@
             <label for="slide2" class="indicator"></label>
             <label for="slide3" class="indicator"></label>
           </div>
-      
         </div>
       </section>
      
@@ -78,8 +80,6 @@
           <button class="features_button">🎧 Круглосуточная поддержка</button>
           <button class="features_button">⚡️ Быстрая покупка</button>
         </div>
-        
-        
       </section>
     </main>
 
@@ -92,11 +92,11 @@
 
         <div class="footer_groups">
             <h3>Навигация</h3>
-            <a href="index.html">Главная</a>
-            <a href="register.html">Регистрация</a>
-            <a href="login.html">Авторизация</a>
-            <a href="profile.html">Личный кабинет</a>
-            <a href="Catalog.html">Поиск</a>
+            <a href="/">Главная</a>
+            <a href="/register">Регистрация</a>
+            <a href="/login">Авторизация</a>
+            <a href="/profile">Личный кабинет</a>
+            <a href="/Catalog">Поиск</a>
         </div>
     </footer>
 </body>

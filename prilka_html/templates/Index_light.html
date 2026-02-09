@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home_Light</title>
-    <link rel="stylesheet" href="/css/style.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
         <div class="header_nav">
-            <img src="/img/logo.svg" alt="logo">
+           <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
             <div class="navigation_buttons_group">
-                <a href="#" class ="navigation_button">Поиск</a>
-                <a href="#" class ="navigation_button">Личный кабинет</a>
-                <a href="#" class ="navigation_button">Каталог</a>
+                 <a href="/" class ="navigation_button">Поиск</a>
+                <a href="/profile" class ="navigation_button">Личный кабинет</a>
+                <a href="/Catalog" class ="navigation_button">Каталог</a>
             </div>
-            <button class="login__nav_button">Войти</button>
+          <button class="login__nav_button"> 
+              <a href="/login">Войти</a>
+            </button>
         </div>  
     </header>
 
@@ -32,11 +34,11 @@
 
         <div class="footer_groups">
             <h3>Навигация</h3>
-            <a href="index.html">Главная</a>
-            <a href="register.html">Регистрация</a>
-            <a href="login.html">Авторизация</a>
-            <a href="profile.html">Личный кабинет</a>
-            <a href="Catalog.html">Поиск</a>
+            <a href="/">Главная</a>
+            <a href="/register">Регистрация</a>
+            <a href="/login">Авторизация</a>
+            <a href="/profile">Личный кабинет</a>
+            <a href="/Catalog">Поиск</a>
         </div>
     </footer>
 </body>
