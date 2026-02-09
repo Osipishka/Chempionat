@@ -3,295 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Админ панель</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Админ-панель — Онлайн-обучение</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <header>
-        <div class="Title">
-            <h3>Админ панель платформы онлайн обучения</h3>
-        </div>
-        <div class="nav_button_group">
-            <button class="nav_button" data-target="students-panel">Студенты</button>
-            <button class="nav_button" data-target="courses-panel">Курсы</button>
-            <button class="nav_button" data-target="lessons-panel">Уроки</button>
-        </div>
-    </header>
-    
-    <main>
-        <form >
-            <section class="panel" id="students-panel">
-                <h2>Управление студентами</h2>
-                <div class="panel-content">
-                    <div class="students_nav_panel">
-                        <form action="/addStudent">
-                            <button type="button" onclick="addStudent()">Добавить студента</button>
-                        </form>
-                        <form action="/showAllStudents">
-                            <button type="button" onclick="showAllStudents()">Показать студентов</button>
-                        </form>
-                        <form action="/search_students">
-                            <input type="text" placeholder="Поиск по имени..." id="search-name">
-                            <button type="button" onclick="searchByName()">Найти</button>
-                        </form>
-                    </div>
-            
-                    <!-- Вот сюда будут подставляться карточки из базы -->
-                    <div class="students-grid" id="students-grid">
-                        <!-- Здесь ничего не пиши вручную — будет заменяться через JS -->
-                        <p>Загрузка студентов...</p>
-                    </div>
-                </div>
-                <div id="add-student-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-modal" onclick="closeAddStudentModal()">&times;</span>
-                        <h2>Добавить студента</h2>
-                        
-                        <form id="add-student-form" onsubmit="addStudentSubmit(event)">
-                            <div class="form-group">
-                                <label for="full_name">Фамилия и имя</label>
-                                <input type="text" id="full_name" name="full_name" placeholder="Иванов Иван" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="course">Курс</label>
-                                <select id="course" name="course" required>
-                                    <option value="">Выберите курс</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="date">Дата записи</label>
-                                <input type="date" id="date" name="date" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="status">Статус оплаты</label>
-                                <select id="status" name="status" required>
-                                    <option value="Ожидает оплаты">Ожидает оплаты</option>
-                                    <option value="Оплачено">Оплачено</option>
-                                    <option value="Ошибка оплаты">Ошибка оплаты</option>
-                                </select>
-                            </div>
-                            
-                            <button type="submit" class="btn-submit">Сохранить студента</button>
-                        </form>
-                    </div>
-                </div>
-                
-                <!-- Тёмный фон для модалки -->
-                <div id="modal-overlay" class="modal-overlay" onclick="closeAddStudentModal()" style="display:none;"></div>
 
+    <div class="admin-layout">
+
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Админ-панель</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active">Курсы</a>
+                <a href="#">Уроки</a>
+                <a href="#">Студенты и записи</a>
+                <a href="#">Сертификаты</a>
+                <a href="login.html" class="logout">Выйти</a>
+            </nav>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+
+            <header class="page-header">
+                <h1>Курсы</h1>
+                <button class="btn btn-primary">+ Создать курс</button>
+            </header>
+
+            <!-- Список курсов -->
+            <section class="section">
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                                <th>Продолжительность</th>
+                                <th>Цена</th>
+                                <th>Дата начала</th>
+                                <th>Дата окончания</th>
+                                <th>Обложка</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Основы JavaScript</td>
+                                <td>48 ч</td>
+                                <td>14 900 ₽</td>
+                                <td>10.02.2026</td>
+                                <td>10.05.2026</td>
+                                <td><img src="https://via.placeholder.com/80x45" alt="обложка" class="course-img"></td>
+                                <td class="actions">
+                                    <button class="btn btn-small btn-edit">Редактировать</button>
+                                    <button class="btn btn-small btn-delete">Удалить</button>
+                                    <button class="btn btn-small btn-lessons">Уроки</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Python для анализа данных</td>
+                                <td>72 ч</td>
+                                <td>19 900 ₽</td>
+                                <td>01.03.2026</td>
+                                <td>30.06.2026</td>
+                                <td><img src="https://via.placeholder.com/80x45" alt="обложка" class="course-img"></td>
+                                <td class="actions">
+                                    <button class="btn btn-small btn-edit">Редактировать</button>
+                                    <button class="btn btn-small btn-delete">Удалить</button>
+                                    <button class="btn btn-small btn-lessons">Уроки</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="btn btn-small">« Предыдущая</button>
+                    <span>1 из 4</span>
+                    <button class="btn btn-small">Следующая »</button>
+                </div>
             </section>
-        
-        <section class="panel" id="courses-panel">
-            <h2>Управление курсами</h2>
-            <div class="panel-content">
-                <button onclick="addCourse()">Добавить курс</button>
-                <button onclick="editCourse()">Редактировать</button>
-                <button onclick="deleteCourse()">Удалить</button>
-                <div id="courses-list">
-                </div>
-            </div>
-        </section>
-        <section class="panel" id="lessons-panel">
-            <h2>Управление уроками</h2>
-            <div class="panel-content">
-                <button onclick="addLesson()">Добавить урок</button>
-                <select>
-                    <option>Выберите курс</option>
-                </select>
-                <div id="lessons-list">
-                </div>
-            </div>
-        </section>     
-        </form>
-    </main>
-    <script src="{{ url_for('static', filename='admin.js') }}"></script>
-    
-    <script>
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            loadStudents();  // сразу загружаем
-        });
-        // Открытие модального окна
-        function addStudent() {
-    // Подгружаем курсы (как было раньше)
-    fetch('/get_courses_for_select')
-        .then(response => response.json())
-        .then(data => {
-            const select = document.getElementById('course');
-            select.innerHTML = '<option value="">Выберите курс</option>';
-            data.forEach(course => {
-                const opt = document.createElement('option');
-                opt.value = course.Name;          // или course.ID, если переделаешь
-                opt.textContent = course.Name;
-                select.appendChild(opt);
-            });
-        })
-        .catch(err => console.error('Ошибка курсов:', err));
 
-    const modal = document.getElementById('add-student-modal');
-    modal.classList.add('active');
-}
-
-function closeAddStudentModal() {
-    const modal = document.getElementById('add-student-modal');
-    modal.classList.remove('active');
-    document.getElementById('add-student-form').reset();
-}
-
-// Чтобы закрывать по клику вне модалки
-document.getElementById('add-student-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeAddStudentModal();
-    }
-});
-
-function closeAddStudentModal() {
-    document.getElementById('add-student-modal').style.display = 'none';
-    document.getElementById('modal-overlay').style.display = 'none';
-    document.getElementById('add-student-form').reset();
-}
-
-// Отправка формы
-function addStudentSubmit(event) {
-    event.preventDefault();
-    
-    const formData = new FormData(event.target);
-    
-    fetch('/add_student', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Студент успешно добавлен!');
-            closeAddStudentModal();
-            loadStudents();  // обновляем список
-        } else {
-            alert('Ошибка: ' + (data.error || 'Неизвестная ошибка'));
-        }
-    })
-    .catch(err => {
-        console.error('Ошибка:', err);
-        alert('Произошла ошибка при сохранении');
-    });
-}
-        function loadStudents() {
-            fetch('/get_first_five_students')
-                .then(response => {
-                    if (!response.ok) throw new Error('Ошибка сервера');
-                    return response.text();
-                })
-                .then(html => {
-                    document.getElementById('students-grid').innerHTML = html;
-                })
-                .catch(error => {
-                    console.error('Ошибка:', error);
-                    document.getElementById('students-grid').innerHTML = 
-                        '<p style="color: red;">Не удалось загрузить студентов</p>';
-                });
-        }
-        
-        function showAllStudents() {
-            
-        }
-        
-        function searchByName() {
-    const name = document.getElementById('search-name').value.trim();
-    
-    if (!name) {
-        alert('Введите имя для поиска');
-        return;
-    }
-
-    // Отправляем запрос на сервер
-    fetch('/search_students', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            'name': name
-        })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Ошибка сервера');
-        }
-        return response.json();
-    })
-    .then(students => {
-        // Очищаем текущий список
-        const grid = document.getElementById('students-grid');
-        grid.innerHTML = '';
-
-        if (students.length === 0) {
-            grid.innerHTML = '<p style="text-align:center; color:#777; padding:20px;">Студенты не найдены</p>';
-            return;
-        }
-
-        // Генерируем карточки из полученных данных (аналогично тому, как сервер делает в /get_first_five_students)
-        let html = '';
-        students.forEach(student => {
-            let status_text = student.status || 'Ожидает оплаты';
-            let status_lower = status_text.toLowerCase();
-            let status_class = 'paid';
-
-            if (status_lower.includes('ожидает')) {
-                status_class = 'pending';
-            } else if (status_lower.includes('ошибк') || status_lower.includes('ошибка')) {
-                status_class = 'error';
-            }
-
-            html += `
-            <div class="student-card">
-                <div class="student-info">
-                    <h3 class="student-name">${student.name || '—'}</h3>
-                    <p class="student-email">${student.email || '—'}</p>
-                </div>
-                <div class="student-course">
-                    <span class="course-label">Курс:</span>
-                    <span class="course-name">${student.course || '—'}</span>
-                </div>
-                <div class="student-meta">
-                    <div class="meta-item">
-                        <span class="label">Дата записи:</span>
-                        <span class="value">${student.date || '—'}</span>
+            <!-- Форма создания/редактирования курса (пример) -->
+            <section class="section form-section" id="course-form" style="display: none;">
+                <h2>Создание курса</h2>
+                <form class="admin-form">
+                    <div class="form-row">
+                        <label>Название курса *</label>
+                        <input type="text" placeholder="Например: Основы веб-разработки" required>
                     </div>
-                    <div class="meta-item">
-                        <span class="label">Статус:</span>
-                        <span class="status ${status_class}">${status_text}</span>
+
+                    <div class="form-row">
+                        <label>Описание</label>
+                        <textarea placeholder="Краткое описание курса (до 100 символов)"></textarea>
                     </div>
+
+                    <div class="form-row">
+                        <label>Продолжительность (часы) *</label>
+                        <input type="number" min="1" max="10" placeholder="например: 8">
+                    </div>
+
+                    <div class="form-row">
+                        <label>Цена (₽) *</label>
+                        <input type="text" placeholder="например: 12900.00">
+                    </div>
+
+                    <div class="form-row">
+                        <label>Дата начала *</label>
+                        <input type="text" placeholder="дд-мм-гггг">
+                    </div>
+
+                    <div class="form-row">
+                        <label>Дата окончания *</label>
+                        <input type="text" placeholder="дд-мм-гггг">
+                    </div>
+
+                    <div class="form-row">
+                        <label>Обложка курса *</label>
+                        <input type="file" accept="image/jpeg">
+                        <small>Только JPG/JPEG, макс. 2 МБ</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="button" class="btn btn-secondary">Отмена</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Студенты и записи -->
+            <section class="section" id="students-section" style="display: none;">
+                <h2>Студенты и записи</h2>
+
+                <div class="filter-row">
+                    <select>
+                        <option>Все курсы</option>
+                        <option>Основы JavaScript</option>
+                        <option>Python для анализа данных</option>
+                    </select>
                 </div>
-            </div>
-            `;
-        });
 
-        // Добавляем пагинацию-заглушку (можно потом убрать или сделать настоящую)
-        html += `
-        <div class="pagination">
-            <button class="page-btn prev" disabled>← Назад</button>
-            <span class="page-info">Результаты поиска</span>
-            <button class="page-btn next" disabled>Вперёд →</button>
-        </div>
-        `;
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Имя</th>
+                                <th>Курс</th>
+                                <th>Дата записи</th>
+                                <th>Статус оплаты</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>anna.ivanova@mail.ru</td>
+                                <td>Анна Иванова</td>
+                                <td>Основы JavaScript</td>
+                                <td>05.02.2026</td>
+                                <td class="status-paid">Оплачено</td>
+                                <td><button class="btn btn-small btn-certificate">Сертификат</button></td>
+                            </tr>
+                            <tr>
+                                <td>max.petrov@gmail.com</td>
+                                <td>Максим Петров</td>
+                                <td>Python для анализа данных</td>
+                                <td>03.02.2026</td>
+                                <td class="status-pending">Ожидает оплаты</td>
+                                <td><button class="btn btn-small btn-certificate">Сертификат</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-        grid.innerHTML = html;
-    })
-    .catch(error => {
-        console.error('Ошибка поиска:', error);
-        document.getElementById('students-grid').innerHTML = 
-            '<p style="color: red; text-align:center; padding:20px;">Ошибка при поиске</p>';
-    });
-}
-        </script>
+        </main>
+    </div>
+
 </body>
 </html>

@@ -20,55 +20,67 @@
     </header>
 
     <main>
-       <section class="carousel" aria-label="Gallery">
-  <ol class="carousel__viewport">
-    <li id="carousel__slide1"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper">
-        <a href="#carousel__slide3"
-           class="carousel__prev">Go to last slide</a>
-        <a href="#carousel__slide2"
-           class="carousel__next">Go to next slide</a>
-      </div>
-    </li>
-    <li id="carousel__slide2"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide1"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide3"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <li id="carousel__slide3"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide2"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide1"
-         class="carousel__next">Go to next slide</a>
-    </li>
+      <section class="slider_new_gam_group">
+        <h3 class="new_game">Новинки</h3>
+        <div class="slider-container">
+          <input type="radio" name="slides" id="slide1" checked class="radio-inputs">
+          <input type="radio" name="slides" id="slide2" class="radio-inputs">
+          <input type="radio" name="slides" id="slide3" class="radio-inputs">
+      
+          <div class="slides">
+            <div class="slide">
+              <img src="/img/bg3.webp" alt="Slide 1">
+              <div class="slide-info">
+                <h3>Baldur's Gate 3</h3>
+                <p class="price">1499₽</p>
+                <p> <button>Подробнее</button></p>
+              </div>
+            </div>
+            <div class="slide">
+              <img src="/img/doom.webp" alt="Slide 2">
+              <div class="slide-info">
+                <h3>Doom 2016</h3>
+                <p class="price">990₽</p>
+                <p> <button>Подробнее</button></p>
+              </div>
+            </div>
+            <div class="slide">
+              <img src="/img/minecraft.webp" alt="Slide 3">
+              <div class="slide-info">
+                <h3>Minecraft</h3>
+                <p class="price">759₽</p>
+                <p> <button>Подробнее</button></p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="indicators">
+            <label for="slide1" class="indicator"></label>
+            <label for="slide2" class="indicator"></label>
+            <label for="slide3" class="indicator"></label>
+          </div>
+      
+        </div>
+      </section>
+     
+      <section class="find_game_group">
+        <h3>Быстрый поиск по жанрам</h3>
+        <input class="find_game_field" placeholder="Введите жанр игры">
+        <button class="find_button">🔍︎</button>
+      </section>
 
-  </ol>
-  <aside class="carousel__navigation">
-    <ol class="carousel__navigation-list">
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide1"
-           class="carousel__navigation-button">Go to slide 1</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide2"
-           class="carousel__navigation-button">Go to slide 2</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide3"
-           class="carousel__navigation-button">Go to slide 3</a>
-      </li>
-    </ol>
-  </aside>
-</section>
+      <section class="features_group">
+        <h3>Почему выбирают BESTGAMES</h3>
+        <label class="features_text">Мы предлагаем уникальные возможности для геймеров, разработчиков и партнёров.</label>
+        <div class="features_buttons_group">
+          <button class="features_button">🏷️ Привлекательные цены</button>
+          <button class="features_button">％ Ежемесечные акции</button>
+          <button class="features_button">🎧 Круглосуточная поддержка</button>
+          <button class="features_button">⚡️ Быстрая покупка</button>
+        </div>
+        
+        
+      </section>
     </main>
 
  <footer>
