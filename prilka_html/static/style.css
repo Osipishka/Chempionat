@@ -47,8 +47,6 @@ a{
 /* MAIN */
 main{
     flex-grow: 1;
-    padding-left: 5%;
-    padding-right: 5%;
 }
 
 main > * {
@@ -303,9 +301,11 @@ footer{
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 20px;
+  
 }
 
 /* CATALOG NAV */
+
 .catalog_navigation{
    grid-column: 1;
   background-color: #364156;
@@ -315,6 +315,7 @@ footer{
   gap: 20px;
   width: auto;
   border-radius: 10px;
+  height: 480px;
 }
 
 .navigation_items{
@@ -440,9 +441,7 @@ ul{
   width: 200px;
 
 }
-.game title{
-  
-}
+
 .game img {
   width: 100%;
   height: 200px;
@@ -469,6 +468,87 @@ ul{
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.2s ease;
 }
+
+/* ADMIN */
+
+.admin_panel{
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+}
+
+.admin_navigation{
+    background-color: #364156;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    max-Height: 500px;
+    gap: 30px;
+    align-items: center;
+    padding: 50px;
+    border-radius: 10px;
+  }
+
+.admin_nav_btn{
+    background-color: #212d40;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    border-color: white;
+}
+
+.admin_nav_btn img{
+   filter: invert(1);
+}
+
+.panels_window_group{
+  background-color: #364156;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.panel_window{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+  color: white;
+ display: none;
+}
+
+.add_panel:target,
+.edit_panel:target,
+.delete_panel:target {
+    display: flex;
+}
+
+.game_field{
+  width: 300px;
+  height: 20px;
+  font-size: large;
+}
+
+.input_field{
+   width: 300px;
+  height: 10px;
+  background-color: #212d40;
+  box-shadow: none;
+  border-color: white;
+}
+
+.admin_action_btn{
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+  background-color: #e94f37;
+}
+
+
 
 /* ==@MEDIA== */
 

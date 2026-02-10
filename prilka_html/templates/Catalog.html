@@ -91,64 +91,22 @@
                     </div>
                 </div> 
             </div>
-           <div class="catalog_items">
-                <!-- <div class="game">
-                    <img src="/img/doom-square.webp" alt="Doom 2016">
-                    <label class="genre">Шутер от первого лица</label>
-                    <label>Bethesda</label>
-                    <label class="rating">★★★★★</label>
-                    <label class="cost">999₽</label>
-                    <button class="by_button">Купить</button>
-                </div>
-                 <div class="game">
-                    <img src="/img/doom-square.webp" alt="Doom 2016">
-                    <label class="title">Шутер от первого лица</label>
-                    <label>Bethesda</label>
-                    <label class="rating">★★★★★</label>
-                    <label class="cost">999₽</label>
-                    <button class="by_button">Купить</button>
-                </div>
-                <div class="game">
-                    <img src="/img/doom-square.webp" alt="Doom 2016">
-                    <label class="title">Шутер от первого лица</label>
-                    <label>Bethesda</label>
-                    <label class="rating">★★★★★</label>
-                    <label class="cost">999₽</label>
-                    <button class="by_button">Купить</button>
-                </div>
-                <div class="game">
-                    <img src="/img/doom-square.webp" alt="Doom 2016">
-                    <label class="title">Шутер от первого лица</label>
-                    <label>Bethesda</label>
-                    <label class="rating">★★★★★</label>
-                    <label class="cost">999₽</label>
-                    <button class="by_button">Купить</button>
-                </div>
-                <div class="game">
-                    <img src="/img/doom-square.webp" alt="Doom 2016">
-                    <label class="title">Шутер от первого лица</label>
-                    <label>Bethesda</label>
-                    <label class="rating">★★★★★</label>
-                    <label class="cost">999₽</label>
-                    <button class="by_button">Купить</button>
-                </div>
-                <div class="game">
-                    <img src="/img/doom-square.webp" alt="Doom 2016">
-                    <label class="title">Шутер от первого лица</label>
-                    <label>Bethesda</label>
-                    <label class="rating">★★★★★</label>
-                    <label class="cost">999₽</label>
-                    <button class="by_button">Купить</button>
-                </div>
-                <div class="game">
-                    <img src="/img/doom-square.webp" alt="Doom 2016">
-                    <label class="title">Шутер от первого лица</label>
-                    <label>Bethesda</label>
-                    <label class="rating">★★★★★</label>
-                    <label class="cost">999₽</label>
-                    <button class="by_button">Купить</button>
-                </div> -->
-            </div>
+           <form action="/Catalog" method="POST" class="catalog_items">
+                {% if games %}
+                    {% for game in games %}
+                        <div class="game">
+                          <img src="{{ url_for('static', filename=game.image_url) }}" alt="{{ game.title }}">
+                            <label class="genre">{{ game.genre }}</label>
+                            <label>{{ game.developer }}</label>
+                            <label class="rating">{{ '★' * game.rating }}{{ '✰' * (5-game.rating) }}</label>
+                            <label class="cost">{{ game.price }}₽</label>
+                            <button class="by_button">Купить</button>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Игры не найдены</p>
+                {% endif %}
+            </form>
         </section>
        
     </main>

@@ -22,6 +22,84 @@
     </header>
 
     <main>
+        <section class="admin_panel">
+           
+            <section class="admin_navigation">
+                <button class='admin_nav_btn add_btn'>
+                <img src="{{ url_for('static', filename='images/add.png') }}" alt="add_img">
+                    <a href="#add_form">Добавить игру</a>
+                </button>
+                <button class='admin_nav_btn edit_btn'>
+                    <img src="{{ url_for('static', filename='images/edit.png') }}" alt="add_img">
+                    <a href="#edt_form">Редактировать игру</a>
+                </button>
+                <button class='admin_nav_btn delete_btn'>
+                    <img src="{{ url_for('static', filename='images/delete.png') }}" alt="add_img">
+                    <a href="#delete_form">Удалить игру</a>
+                </button>
+            </section>
+
+            <section class="panels_window_group">
+
+                <form id="add_form" action="/add_game" method="POST" class="add_panel panel_window">
+                    <label class="game_field">Название игры</label>
+                    <input name="title" class="input_field" placeholder="Doom 2016" required>
+                
+                    <label class="game_field">Обложка игры</label>
+                    <input name="image" class="input_field" type="file" accept=".png,.jpg,.jpeg,.webp">
+                
+                    <label class="game_field">Жанр игры</label>
+                    <input name="genre" class="input_field" placeholder="Шутер от первого лица" >
+                
+                    <label class="game_field">Разработчик игры</label>
+                    <input name="developer" class="input_field" placeholder="Bethesda" required>
+                
+                    <label class="game_field">Рейтинг игры</label>
+                    <input name="rating" class="input_field" placeholder="5" type="number" min="1" max="5" required>
+                
+                    <label class="game_field">Стоимость игры(₽)</label>
+                    <input name="cost" class="input_field" placeholder="799" type="number" min="0" required>
+                
+                    <button type="submit" class="admin_action_btn">Добавить</button>
+                </form>
+
+                <form action="/edit_game" method="POST" class="panel_window" enctype="multipart/form-data">
+                    <form action="/find_game" method="GET" class="edit_panel panel_window">
+                        <label class="game_field">ID игры для редактирования</label>
+                        <input name="id" class="input_field" placeholder="Введите ID игры" type="number" min="1" required>
+                        <button type="submit" class="admin_action_btn">Найти игру</button>
+                    </form>
+                
+                    <label class="game_field">Название игры</label>
+                    <input name="title" class="input_field" value="{{ game.title }}" required>
+                    
+                    <label class="game_field">Текущая обложка: {{ game.image_url }}</label>
+                    <label class="game_field">Новая обложка игры (оставьте пустым, чтобы не менять)</label>
+                    <input name="image" class="input_field" type="file" accept=".png,.jpg,.jpeg,.webp">
+                    
+                    <label class="game_field">Жанр игры</label>
+                    <input name="genre" class="input_field" value="{{ game.genre }}">
+                    
+                    <label class="game_field">Разработчик игры</label>
+                    <input name="developer" class="input_field" value="{{ game.developer }}" required>
+                    
+                    <label class="game_field">Рейтинг игры</label>
+                    <input name="rating" class="input_field" value="{{ game.rating }}" type="number" min="1" max="5" required>
+                    
+                    <label class="game_field">Стоимость игры(₽)</label>
+                    <input name="cost" class="input_field" value="{{ game.price }}" type="number" min="0" required>
+                    
+                    <button type="submit" class="admin_action_btn">Сохранить изменения</button>
+                    <a href="/admin" class="cancel_btn">Отмена</a>
+                </form>
+                   
+                <form id="delete_form" action="/delete_game" method="POST" class="delete_panel panel_window">
+                    <label class="game_field">ID игры для удаления</label>
+                    <input name="id" class="input_field" placeholder="1" type="number" min="1" required>
+                    <button type="submit" class="admin_action_btn delete_btn">Удалить игру</button>
+                </form>
+            </section>
+        </section>
         
     </main>
 
