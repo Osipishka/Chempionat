@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, jsonify
+from flask import Flask, render_template, redirect, request, session
 from flask_sqlalchemy import SQLAlchemy
 from api import db_api
 import os
@@ -10,12 +10,54 @@ app.secret_key = '12345'
 def index():
     return render_template('index.html')
 
-@app.route('/register')
+@app.route('/register', )
 def register():
     return render_template('register.html')
 
-@app.route('/login')
+@app.route('/reg', methods=['POST'])
+def reg():
+    if request.method == 'POST':
+        login = request.form.get('login')
+        pas = request.form.get('password')
+    
+    if not login or not pas:
+        return render_template('register.html')
+
+    db_api.reg_user(login=login, password=pas)
+    return redirect('/')
+
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+     
+        login = request.form.get('login')
+        password = request.form.get('password')
+        
+        if not login or not password:
+            return render_template('login.html', error="Заполните все поля")
+        
+        try:
+            password_int = int(password)
+            user = db_api.login_user(login=login, password=password_int)
+            print(f"User found: {user}")
+            
+        except ValueError:
+            return render_template('login.html', error="Пароль должен быть числом")
+        
+        if user:
+            # Успешный вход
+            session['user_id'] = user['id']
+            session['login'] = user['login']
+            session['role'] = user['role']
+            
+            if user['role'] == 'admin':
+                return redirect('/admin')
+            else:
+                return redirect('/profile')
+        else:
+            return render_template('login.html', error="Неверный логин или пароль")
+    
     return render_template('login.html')
 
 @app.route('/profile')
@@ -29,42 +71,28 @@ def admin():
 @app.route('/add_game', methods=['POST'])
 def add_game():
     if request.method == 'POST':
-        # Обработка добавления игры
         title = request.form.get('title')
         genre = request.form.get('genre')
-        developer = request.form.get('developer')
+        dev = request.form.get('developer')
         rating = request.form.get('rating')
         cost = request.form.get('cost')
-        
-        # Проверяем основные поля
-        if not title or not genre or not developer or not rating or not cost:
-            return redirect('/admin')
-        
-        # Обрабатываем картинку
+
         img_path = 'images/Default.png'
-        
+
         if 'image' in request.files:
             file = request.files['image']
             if file and file.filename:
                 filename = file.filename
                 file.save(os.path.join('static', 'images', filename))
                 img_path = f'images/{filename}'
-        
-        # Конвертируем числа
-        try:
-            rating_int = int(rating)
-            cost_int = int(cost)
-        except:
-            return redirect('/admin')
-        
-        # Добавляем в БД
-        db_api.create_game(title, img_path, genre, developer, rating_int, cost_int)
+
+        db_api.create_game(title, img_path, genre, dev, rating=int(rating), cost=int(cost))
     return redirect('/admin')
 
-@app.route('/find_game', methods=['GET'])
+@app.route('/find_game', methods=['POST'])
 def find_game():
     """Найти игру по ID для редактирования"""
-    game_id = request.args.get('id')
+    game_id = request.form.get('id')
     
     if not game_id:
         return redirect('/admin')
@@ -74,10 +102,11 @@ def find_game():
         game = db_api.get_game_by_id(game_id_int)
         
         if game:
-            # Возвращаем страницу админа с предзаполненной формой
-            return render_template('edit_form.html', game=game)
+            # Возвращаем ту же страницу, но с данными игры
+            return render_template('admin.html', game=game)
         else:
-            return redirect('/admin')
+            # Игра не найдена
+            return render_template('admin.html', error="Игра не найдена")
             
     except:
         return redirect('/admin')
@@ -95,8 +124,12 @@ def edit_game():
     if not all([game_id, title, developer, rating, cost]):
         return redirect('/admin')
     
+    # Получаем текущую игру
+    current_game = db_api.get_game_by_id(int(game_id))
+    
     # Обрабатываем картинку
-    img_path = 'images/Default.png'
+    img_path = current_game['image_url'] if current_game else 'images/Default.png'
+    
     if 'image' in request.files:
         file = request.files['image']
         if file and file.filename:
@@ -113,7 +146,15 @@ def edit_game():
         return redirect('/admin')
     
     # Обновляем игру
-    db_api.edit_game(game_id_int, title, img_path, genre, developer, rating_int, cost_int)
+    success = db_api.edit_game(
+        game_id=game_id_int,
+        title=title,
+        img=img_path,
+        genre=genre,
+        dev=developer,
+        rating=rating_int,
+        cost=cost_int
+    )
     return redirect('/admin')
 
 

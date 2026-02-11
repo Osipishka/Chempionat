@@ -20,15 +20,14 @@
     </header>
 
     <main>
-        <div class="login_field_group">
+        <form action="/login" method="POST" class="login_field_group">
             <h3>Вход</h3>
-            <input class="input_field" placeholder="Email" type="email">
-            <input class="input_field" placeholder="Password" type="password">
+            <input class="input_field" name="login" placeholder="Email" type="email" required>
+            <input class="input_field" name="password" placeholder="Password" type="password" required>
             <a href="/register">Восстановить пароль</a>
-            <button class="login_button">
-                 <a href="/profile">Войти</a>
+             <button type="submit" class="login_button">Войти</button>
             </button>
-        </div>
+        </form>
     </main>
 
     <footer>

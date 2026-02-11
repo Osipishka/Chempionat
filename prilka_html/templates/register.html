@@ -20,23 +20,23 @@
     </header>
 
     <main>
-        <div class="register_field_group">
+        <form action="/reg" method="POST" class="register_field_group">
             <h3>Регистрация</h3>
-            <input class="input_field" placeholder="Email" type="email">
+            <input class="input_field" name="login" placeholder="Email" type="email" required>
             <input class="input_field" placeholder="Fullname">
             <input class="input_field" placeholder="Name">
             <input class="input_field" placeholder="Date" type="date">
             <input class="input_field" placeholder="Phone" type="Phone">
-            <input class="input_field" placeholder="Password" type="password">
+            <input class="input_field" name="password" placeholder="Password" type="password" required>
             <input class="input_field" placeholder="Password replay" type="password">
-            <form class="data_checkbox">
+            <span class="data_checkbox">
                 <input id="personal_data" name="check" type="checkbox">
                 <label for="personal_data">Подтверждаю согласие на обработку персональных данных</label>
-            </form>
+            </span>
             <button class="login_button">
-                 <a href="/login">Зарегистрироваться</a>
+                Зарегистрироваться
             </button>
-        </div>
+        </form>
     </main>
  <footer>
         <div class="footer_groups">

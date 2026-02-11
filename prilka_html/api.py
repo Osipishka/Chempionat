@@ -48,13 +48,13 @@ class DatabaseAPI:
         with self._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
-            UPDATE Games 
-            SET Title = ?, 
-                Img = ?, 
-                Genre = ?, 
-                Developer = ?, 
-                Rating = ?, 
-                Cost = ?
+                UPDATE Games 
+                SET Title = ?, 
+                    Img = ?, 
+                    Genre = ?, 
+                    Developer = ?, 
+                    Rating = ?, 
+                    Cost = ?
             WHERE ID = ?
         """, (title, img, genre, dev, rating, cost, game_id))
         conn.commit()
@@ -85,6 +85,31 @@ class DatabaseAPI:
                 WHERE ID = ?
             """, (game_id,))
         
+
+    def login_user(self, login: str, password: int) -> Optional[Dict[str, Any]]:
+
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT
+                    ID as id,
+                    Login as login,
+                    Password as password,
+                    Role as role
+                FROM Users
+                WHERE Login = ? AND Password = ?
+        """, (login, password))
+
+    def reg_user(self, login: str, password: int) -> int:
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO Users (Login, Password) VALUES (?, ?)",
+                (login, password)
+            )
+            conn.commit()
+        return cursor.lastrowid
+
         row = cursor.fetchone()
         if row:
             return dict(row)
