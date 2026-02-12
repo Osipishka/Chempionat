@@ -9,17 +9,40 @@
 <body>
     <header>
         <div class="header_nav">
-           <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
-            <div class="navigation_buttons_group">
-                 <a href="/" class ="navigation_button">Поиск</a>
-                <a href="/profile" class ="navigation_button">Личный кабинет</a>
-                <a href="/Catalog" class ="navigation_button">Каталог</a>
-            </div>
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+        
+        <!-- Бургер-кнопка (видна только на мобильных) -->
+        <div class="burger-menu">
+            <input type="checkbox" id="burger-toggle">
+            <label for="burger-toggle" class="burger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
             
+            <!-- Навигация внутри бургера -->
+            <nav class="burger-nav">
+                <div class="burger-nav_buttons_group">
+                    <a href="/" class="burger-nav_button">Поиск</a>
+                    <a href="/profile" class="burger-nav_button">Личный кабинет</a>
+                    <a href="/Catalog" class="burger-nav_button">Каталог</a>
+                    <a href="/login" class="burger-nav_button login_button">Войти</a>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Десктопная навигация (скрывается на мобильных) -->
+        <div class="desktop-nav">
+            <div class="navigation_buttons_group">
+                <a href="/" class="navigation_button">Поиск</a>
+                <a href="/profile" class="navigation_button">Личный кабинет</a>
+                <a href="/Catalog" class="navigation_button">Каталог</a>
+            </div>
             <button class="login__nav_button"> 
-              <a href="/login">Войти</a>
+                <a href="/login">Войти</a>
             </button>
-        </div>  
+        </div>
+    </div>
     </header>
 
     <main>

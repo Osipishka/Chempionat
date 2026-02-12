@@ -27,23 +27,22 @@ def reg():
     return redirect('/')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login')
 def login():
+    return render_template('login.html')
+
+@app.route('/login_user', methods=['POST'])
+def login_user():
     if request.method == 'POST':
      
         login = request.form.get('login')
         password = request.form.get('password')
-        
+        password_int = int(password)
+
         if not login or not password:
             return render_template('login.html', error="Заполните все поля")
-        
-        try:
-            password_int = int(password)
-            user = db_api.login_user(login=login, password=password_int)
-            print(f"User found: {user}")
-            
-        except ValueError:
-            return render_template('login.html', error="Пароль должен быть числом")
+
+        user = db_api.login_user(login=login, password=password_int)
         
         if user:
             # Успешный вход
@@ -58,7 +57,7 @@ def login():
         else:
             return render_template('login.html', error="Неверный логин или пароль")
     
-    return render_template('login.html')
+    return redirect('/')
 
 @app.route('/profile')
 def profile():

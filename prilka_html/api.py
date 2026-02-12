@@ -99,6 +99,11 @@ class DatabaseAPI:
                 FROM Users
                 WHERE Login = ? AND Password = ?
         """, (login, password))
+            row = cursor.fetchone()
+            if row:
+                return dict(row)
+            return None
+
 
     def reg_user(self, login: str, password: int) -> int:
         with self._get_connection() as conn:
@@ -110,8 +115,5 @@ class DatabaseAPI:
             conn.commit()
         return cursor.lastrowid
 
-        row = cursor.fetchone()
-        if row:
-            return dict(row)
-        return None
+   
 db_api = DatabaseAPI()
