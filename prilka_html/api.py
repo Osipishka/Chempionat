@@ -115,5 +115,23 @@ class DatabaseAPI:
             conn.commit()
         return cursor.lastrowid
 
-   
+    def get_user(self) -> List[Dict[str, Any]]:
+        """Получить получить пользователя"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+            SELECT 
+                ID,
+                Title as title,
+                Img as image_url,
+                Genre as genre,
+                Developer as developer,
+                Rating as rating,
+                Cost as price
+            FROM Users
+            ORDER BY ID
+        """)
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+
 db_api = DatabaseAPI()
