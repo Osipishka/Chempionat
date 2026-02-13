@@ -58,6 +58,7 @@ def login_user():
 
 @app.route('/profile')
 def get_user():
+    
     return render_template('profile.html')
 
 @app.route('/admin')
