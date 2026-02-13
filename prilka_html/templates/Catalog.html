@@ -107,6 +107,23 @@
                     <p>Игры не найдены</p>
                 {% endif %}
             </form>
+
+           <div class="pagination">
+                {% if page > 1 %}
+                    <a href="/Catalog?page={{ page - 1 }}" class="pagination_button">← Назад</a>
+                {% endif %}
+    
+                {% for p in range(1, total_pages + 1) %}
+                    <a href="/Catalog?page={{ p }}" 
+                    class="pagination_button {% if p == page %}active{% endif %}">
+                {{ p }}
+                </a>
+                {% endfor %}
+    
+                {% if page < total_pages %}
+                    <a href="/Catalog?page={{ page + 1 }}" class="pagination_button">Вперед →</a>
+                {% endif %}
+            </div>
         </section>
        
     </main>

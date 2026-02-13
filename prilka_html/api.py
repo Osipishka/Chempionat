@@ -1,5 +1,6 @@
 import sqlite3
 from typing import List, Dict, Any, Optional
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class DatabaseAPI:
     def __init__(self, db_path: str = 'Games.db'):
@@ -86,8 +87,7 @@ class DatabaseAPI:
             """, (game_id,))
         
 
-    def login_user(self, login: str, password: int) -> Optional[Dict[str, Any]]:
-
+    def login_user(self, login: str, password: str) -> Optional[Dict[str, Any]]:
         with self._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -97,29 +97,56 @@ class DatabaseAPI:
                     Password as password,
                     Role as role
                 FROM Users
-                WHERE Login = ? AND Password = ?
-        """, (login, password))
+                WHERE Login = ?
+        """, (login))
+            
             row = cursor.fetchone()
             if row:
                 return dict(row)
             return None
 
 
-    def reg_user(self, login: str, password: int) -> int:
+    def reg_user(self, login: str, password: str) -> int:
+        hashed = generate_password_hash(password)
         with self._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
                 "INSERT INTO Users (Login, Password) VALUES (?, ?)",
-                (login, password)
+                (login, hashed)
             )
             conn.commit()
         return cursor.lastrowid
 
-    def get_user(self) -> List[Dict[str, Any]]:
+    def get_user(self, ) -> List[Dict[str, Any]]:
         """Получить получить пользователя"""
         with self._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
+            SELECT 
+                ID,
+                Name as name,
+                Fullname as fullname,
+                Phone as phone,                           
+                Birthday as birthday,
+                Login as login,
+                Password as password,     
+                Role as role
+            FROM Users
+            ORDER BY ID
+        """)
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+    
+
+    def get_games_paginated(self, page: int = 1, per_page: int = 5) -> Dict[str, Any]:
+        """Получить игры с пагинацией"""
+        offset = (page - 1) * per_page
+    
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+        
+        # Получаем игры для текущей страницы
+        cursor.execute("""
             SELECT 
                 ID,
                 Title as title,
@@ -128,10 +155,23 @@ class DatabaseAPI:
                 Developer as developer,
                 Rating as rating,
                 Cost as price
-            FROM Users
+            FROM Games
             ORDER BY ID
-        """)
-        rows = cursor.fetchall()
-        return [dict(row) for row in rows]
+            LIMIT ? OFFSET ?
+        """, (per_page, offset))
+        
+        games = [dict(row) for row in cursor.fetchall()]
+        
+        # Получаем общее количество игр
+        cursor.execute("SELECT COUNT(*) as total FROM Games")
+        total = cursor.fetchone()['total']
+        
+        return {
+            'games': games,
+            'total': total,
+            'page': page,
+            'per_page': per_page,
+            'total_pages': (total + per_page - 1) // per_page
+        }
 
 db_api = DatabaseAPI()

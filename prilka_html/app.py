@@ -22,10 +22,8 @@ def reg():
     
     if not login or not pas:
         return render_template('register.html')
-
     db_api.reg_user(login=login, password=pas)
     return redirect('/')
-
 
 @app.route('/login')
 def login():
@@ -37,13 +35,12 @@ def login_user():
      
         login = request.form.get('login')
         password = request.form.get('password')
-        password_int = int(password)
 
         if not login or not password:
             return render_template('login.html', error="Заполните все поля")
 
-        user = db_api.login_user(login=login, password=password_int)
-        
+        user = db_api.login_user(login=login, password=password)
+
         if user:
             # Успешный вход
             session['user_id'] = user['id']
@@ -60,7 +57,7 @@ def login_user():
     return redirect('/')
 
 @app.route('/profile')
-def profile():
+def get_user():
     return render_template('profile.html')
 
 @app.route('/admin')
@@ -172,8 +169,16 @@ def delete_game():
 
 @app.route('/Catalog', methods=['GET', 'POST'])
 def catalog():
-    games = db_api.get_all_games()   
-    return render_template('Catalog.html', games=games)
+    # Получаем номер страницы из GET-параметра (по умолчанию 1)
+    page = request.args.get('page', 1, type=int)
+    
+    # Получаем игры с пагинацией
+    data = db_api.get_games_paginated(page=page, per_page=8)
+    
+    return render_template('Catalog.html', 
+                          games=data['games'],
+                          page=data['page'],
+                          total_pages=data['total_pages'])
 
 if __name__ == '__main__':
     app.run(debug=True)
